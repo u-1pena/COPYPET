@@ -1,5 +1,8 @@
 package com.u_1.copypet.Controller;
 
+import com.u_1.copypet.Entity.Enum.ActivityLevel;
+import com.u_1.copypet.Entity.Enum.Gender;
+import com.u_1.copypet.Entity.User;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -28,6 +31,13 @@ public class UserCreateRequest {
 
   @Pattern(regexp = "LOW|MEDIUM|HIGH", message = "活動レベルはLOW,MEDIUM,HIGHのいずれかで選択して下さい。")
   private String activityLevel;
+
+  //UserRequestのGender,ActivityLevelをStringからEnum型にConvertするmethod
+  public User convertToEntity() {
+    return new User(name, age, Gender.valueOf(gender.toUpperCase()), height, weight,
+        ActivityLevel.valueOf(activityLevel.toUpperCase())
+    );
+  }
 
   public UserCreateRequest(String name, int age, String gender, Double height, Double weight,
       String activityLevel) {

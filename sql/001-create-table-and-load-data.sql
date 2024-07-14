@@ -18,18 +18,18 @@ DROP TABLE IF EXISTS pets;
 
 CREATE TABLE pets (
   id int unsigned AUTO_INCREMENT,
-  petName VARCHAR(255) NOT NULL,
-  petAge int NOT NULL,
+  pet_name VARCHAR(255) NOT NULL,
+  pet_age int NOT NULL,
   health int NOT NULL,
   bmr int NOT NULL,
-  dailyCaloriesConsumed int,
-  dailyCaloriesBurned int,
+  daily_calories_consumed int,
+  daily_calories_burned int,
   PRIMARY KEY(id)
 
 );
 
-INSERT INTO pets (petName, petAge, health, bmr, dailyCaloriesConsumed, dailyCaloriesBurned) VALUES ("ganmo", 4, 100, 1780, 2000, 750);
-INSERT INTO pets (petName, petAge, health, bmr, dailyCaloriesConsumed, dailyCaloriesBurned) VALUES ("yurina", 2, 55, 1460, 1020, 120);
+INSERT INTO pets (pet_name, pet_age, health, bmr, daily_calories_consumed, daily_calories_burned) VALUES ("ganmo", 4, 100, 1780, 2000, 750);
+INSERT INTO pets (pet_name, pet_age, health, bmr, daily_calories_consumed, daily_calories_burned) VALUES ("yurina", 2, 55, 1460, 1020, 120);
 
 DROP TABLE IF EXISTS foods;
 

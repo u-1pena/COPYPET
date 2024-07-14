@@ -1,7 +1,5 @@
 package com.u_1.copypet.Controller;
 
-import com.u_1.copypet.Entity.Enum.ActivityLevel;
-import com.u_1.copypet.Entity.Enum.Gender;
 import com.u_1.copypet.Entity.User;
 import com.u_1.copypet.UserService;
 import java.net.URI;
@@ -26,17 +24,7 @@ public class UserController {
   public ResponseEntity<UserResponse> insert(
       @RequestBody @Validated UserCreateRequest userCreateRequest,
       UriComponentsBuilder uriBuilder) {
-    Gender gender = Gender.valueOf(userCreateRequest.getGender());
-    ActivityLevel activityLevel = ActivityLevel.valueOf(userCreateRequest.getActivityLevel());
-
-    User user = userService.userInsert(
-        userCreateRequest.getName(),
-        userCreateRequest.getAge(),
-        gender,
-        userCreateRequest.getHeight(),
-        userCreateRequest.getWeight(),
-        activityLevel
-    );
+    User user = userService.userInsert(userCreateRequest.convertToEntity());
     URI location = uriBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri();
     UserResponse body = new UserResponse("ユーザー登録が完了しました！");
     return ResponseEntity.created(location).body(body);

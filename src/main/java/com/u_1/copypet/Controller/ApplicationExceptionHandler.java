@@ -7,12 +7,18 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice
-public class ExceptionHandler extends RuntimeException {
+// @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
+//        MethodArgumentNotValidException e) {
+//        // 省略
 
-  @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
+@RestControllerAdvice
+public class ApplicationExceptionHandler extends RuntimeException {
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
 //POST,PATCH(登録、更新時）のValidationを実装
   public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException e) {

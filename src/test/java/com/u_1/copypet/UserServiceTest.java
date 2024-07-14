@@ -31,8 +31,7 @@ public class UserServiceTest {
     void ユーザーを新規登録すること() {
       User user = new User("yuichi", 39, Gender.MALE, 165.5, 65.0, ActivityLevel.MEDIUM);
       doNothing().when(userMapper).insert(user);
-      assertThat(userService.userInsert("yuichi", 39, Gender.MALE, 165.5, 65.0,
-          ActivityLevel.MEDIUM)).isEqualTo(user);
+      assertThat(userService.userInsert(user)).isEqualTo(user);
       verify(userMapper).insert(user);
     }
   }
