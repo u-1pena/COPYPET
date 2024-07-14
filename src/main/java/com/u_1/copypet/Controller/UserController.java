@@ -1,7 +1,7 @@
 package com.u_1.copypet.Controller;
 
 import com.u_1.copypet.Entity.User;
-import com.u_1.copypet.UserService;
+import com.u_1.copypet.Service.UserService;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

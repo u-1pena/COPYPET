@@ -1,4 +1,4 @@
-package com.u_1.copypet;
+package com.u_1.copypet.Mapper;
 
 import com.u_1.copypet.Entity.User;
 import org.apache.ibatis.annotations.Insert;

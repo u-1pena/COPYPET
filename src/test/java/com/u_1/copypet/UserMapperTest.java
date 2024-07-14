@@ -6,6 +6,7 @@ import com.github.database.rider.spring.api.DBRider;
 import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
 import com.u_1.copypet.Entity.User;
+import com.u_1.copypet.Mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;

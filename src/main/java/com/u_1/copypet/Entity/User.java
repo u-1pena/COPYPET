@@ -14,9 +14,7 @@ public class User {
   @Setter
   private int id;
   private String name;
-
   private int age;
-
   private Gender gender;
   private Double height;
   private Double weight;

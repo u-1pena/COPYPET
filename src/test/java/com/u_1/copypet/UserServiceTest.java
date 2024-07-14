@@ -7,6 +7,8 @@ import static org.mockito.Mockito.verify;
 import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
 import com.u_1.copypet.Entity.User;
+import com.u_1.copypet.Mapper.UserMapper;
+import com.u_1.copypet.Service.UserService;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

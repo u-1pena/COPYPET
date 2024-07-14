@@ -20,16 +20,22 @@ CREATE TABLE pets (
   id int unsigned AUTO_INCREMENT,
   pet_name VARCHAR(255) NOT NULL,
   pet_age int NOT NULL,
-  health int NOT NULL,
-  bmr int NOT NULL,
-  daily_calories_consumed int,
-  daily_calories_burned int,
+  pet_gender Enum("MALE", "FEMALE") NOT NULL,
+  bmr DOUBLE NOT NULL,
+  daily_energy_requirement DOUBLE NOT NULL,
+  daily_calories_consumed DOUBLE,
+  daily_calories_burned DOUBLE,
+  sleep_time DOUBLE NOT NULL,
+  protein DOUBLE NOT NULL,
+  fat DOUBLE NOT NULL,
+  carbohydrates DOUBLE NOT NULL,
+  pet_level int NOT NULL,
   PRIMARY KEY(id)
 
 );
 
-INSERT INTO pets (pet_name, pet_age, health, bmr, daily_calories_consumed, daily_calories_burned) VALUES ("ganmo", 4, 100, 1780, 2000, 750);
-INSERT INTO pets (pet_name, pet_age, health, bmr, daily_calories_consumed, daily_calories_burned) VALUES ("yurina", 2, 55, 1460, 1020, 120);
+INSERT INTO pets (pet_name, pet_age, pet_gender, bmr, daily_energy_requirement, daily_calories_consumed, daily_calories_burned, sleep_time, protein, fat, carbohydrates, pet_level) VALUES ("ganmo", 1, "MALE", 1780.0, 2639.0, 750, 1450.0, 6.5, 15.0, 9.0, 55.0, 1);
+INSERT INTO pets (pet_name, pet_age, pet_gender, bmr, daily_energy_requirement, daily_calories_consumed, daily_calories_burned, sleep_time, protein, fat, carbohydrates, pet_level) VALUES ("yurina", 1, "FEMALE", 1460.0, 1760.5, 120.0,750.5, 4.5, 11.0, 5.0, 75.0, 1);
 
 DROP TABLE IF EXISTS foods;
 
