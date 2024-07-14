@@ -10,11 +10,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-// @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
-//        MethodArgumentNotValidException e) {
-//        // 省略
-
 @RestControllerAdvice
 public class ApplicationExceptionHandler extends RuntimeException {
 
