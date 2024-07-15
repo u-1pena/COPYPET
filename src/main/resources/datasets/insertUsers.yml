@@ -1,0 +1,23 @@
+users:
+  - id: 1
+    name: "yuichi"
+    age: 39
+    gender: "male"
+    height: 165.0
+    weight: 65.0
+    activityLevel: "medium"
+  - id: 2
+    name: "kana"
+    age: 39
+    gender: "female"
+    height: 151.0
+    weight: 47.0
+    activityLevel: "low"
+  - id: 3
+    name: "testUser"
+    age: 40
+    gender: "male"
+    height: 170.0
+    weight: 80.0
+    activityLevel: "high"
+
