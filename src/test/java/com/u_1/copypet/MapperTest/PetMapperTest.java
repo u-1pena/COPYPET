@@ -36,7 +36,7 @@ public class PetMapperTest {
     @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @Transactional
     void ペットを新規で登録できること() {
-      Pet pet = new Pet(3, "testPet", 0, Gender.MALE, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      Pet pet = new Pet(3, "testPet", 0, Gender.MALE, 1748.87, 3497.74, 0, 0, 0, 0, 0, 0, 0);
       petMapper.insertPet(pet);
     }
   }
