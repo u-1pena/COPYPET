@@ -1,5 +1,6 @@
 package com.u_1.copypet.Service;
 
+import com.u_1.copypet.Controller.Response.UserNotFoundException;
 import com.u_1.copypet.Entity.User;
 import com.u_1.copypet.Mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,17 @@ public class UserService {
     this.userMapper = userMapper;
   }
 
-  public User userInsert(User user) {
-    userMapper.insert(user);
+  //ユーザー新規登録
+  public User createUser(User user) {
+    userMapper.createUser(user);
     return user;
+  }
+
+  //ユーザーをidで検索
+  public User findById(int id) {
+    return this.userMapper.findById(id)
+        .orElseThrow(() -> new UserNotFoundException("user not found with id: " + id));
+
   }
 
 }

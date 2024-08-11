@@ -2,42 +2,59 @@ package com.u_1.copypet.Entity;
 
 import com.u_1.copypet.Entity.Enum.Gender;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class Pet {
 
-  @Setter
-  @Getter
-  private int id;
-  private String petName;
-  private Gender petGender;
-  private Double bmr;
-  private Double dailyEnergyRequirement;
-  private Double dailyCaloriesConsumed;
-  private Double dailyCaloriesBurned;
-  private Double sleepTime;
-  private Double protein;
-  private Double fat;
-  private Double carbohydrates;
-  private int petLevel;
+  private int userId;
+  private String petName;//ペットの名前
+  private int ageInDays;//ペットの年齢
+  private Gender petGender;//ペットの性別
+  private double bmr;//基礎代謝
+  private double dailyEnergyRequirement;//bmr*ActivityLevel
+  private double inTakeCaloriesToday;//今日の摂取カロリー
+  private double calorieExpenditureToday;//消費カロリー
+  private double sleepTime;//睡眠時間
+  private double inTakeProteinToday;//今日のタンパク質摂取量
+  private double inTakeFatToday;//今日の脂肪摂取量
+  private double inTakeCarbohydratesToday;//今日の炭水化物量
+  private int petLevel;//ペットのレベル
 
-  public Pet(int id, String petName, Gender petGender, Double bmr, Double dailyEnergyRequirement,
-      Double dailyCaloriesConsumed, Double dailyCaloriesBurned, Double sleepTime, Double protein,
-      Double fat, Double carbohydrates, int petLevel) {
-    this.id = id;
+  public Pet(int userId, String petName, int ageInDays, Gender petGender,
+      double bmr, double dailyEnergyRequirement,
+      double inTakeCaloriesToday, double calorieExpenditureToday,
+      double sleepTime, double inTakeProteinToday, double inTakeFatToday,
+      double inTakeCarbohydratesToday, int petLevel) {
+    this.userId = userId;
     this.petName = petName;
+    this.ageInDays = ageInDays;
     this.petGender = petGender;
     this.bmr = bmr;
     this.dailyEnergyRequirement = dailyEnergyRequirement;
-    this.dailyCaloriesConsumed = dailyCaloriesConsumed;
-    this.dailyCaloriesBurned = dailyCaloriesBurned;
+    this.inTakeCaloriesToday = inTakeCaloriesToday;
+    this.calorieExpenditureToday = calorieExpenditureToday;
     this.sleepTime = sleepTime;
-    this.protein = protein;
-    this.fat = fat;
-    this.carbohydrates = carbohydrates;
+    this.inTakeProteinToday = inTakeProteinToday;
+    this.inTakeFatToday = inTakeFatToday;
+    this.inTakeCarbohydratesToday = inTakeCarbohydratesToday;
     this.petLevel = petLevel;
   }
 
+  public Pet(String petName, int ageInDays, Gender petGender, double bmr,
+      double dailyEnergyRequirement, double inTakeCaloriesToday, double calorieExpenditureToday,
+      double sleepTime, double inTakeProteinToday, double inTakeFatToday,
+      double inTakeCarbohydratesToday, int petLevel) {
+    this.petName = petName;
+    this.ageInDays = ageInDays;
+    this.petGender = petGender;
+    this.bmr = bmr;
+    this.dailyEnergyRequirement = dailyEnergyRequirement;
+    this.inTakeCaloriesToday = inTakeCaloriesToday;
+    this.calorieExpenditureToday = calorieExpenditureToday;
+    this.sleepTime = sleepTime;
+    this.inTakeProteinToday = inTakeProteinToday;
+    this.inTakeFatToday = inTakeFatToday;
+    this.inTakeCarbohydratesToday = inTakeCarbohydratesToday;
+    this.petLevel = petLevel;
+  }
 }

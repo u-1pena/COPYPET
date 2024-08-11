@@ -2,22 +2,22 @@ users:
   - id: 1
     name: "yuichi"
     age: 39
-    gender: "male"
+    gender: "MALE"
     height: 165.0
     weight: 65.0
-    activityLevel: "medium"
+    activity_level: "MEDIUM"
   - id: 2
     name: "kana"
     age: 39
-    gender: "female"
+    gender: "FEMALE"
     height: 151.0
     weight: 47.0
-    activityLevel: "low"
+    activity_level: "LOW"
   - id: 3
     name: "testUser"
     age: 40
-    gender: "male"
+    gender: "MALE"
     height: 170.0
     weight: 80.0
-    activityLevel: "high"
+    activity_level: "HIGH"
 

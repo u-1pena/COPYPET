@@ -4,24 +4,20 @@ import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
 import java.util.Objects;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class User {
 
-  @Getter
-  @Setter
   private int id;
   private String name;
   private int age;
   private Gender gender;
-  private Double height;
-  private Double weight;
+  private double height;
+  private double weight;
   private ActivityLevel activityLevel;
 
 
-  public User(int id, String name, int age, Gender gender, Double height, Double weight,
+  public User(int id, String name, int age, Gender gender, double height, double weight,
       ActivityLevel activityLevel) {
     this.id = id;
     this.name = name;
@@ -32,7 +28,7 @@ public class User {
     this.activityLevel = activityLevel;
   }
 
-  public User(String name, int age, Gender gender, Double height, Double weight,
+  public User(String name, int age, Gender gender, double height, double weight,
       ActivityLevel activityLevel) {
 
     this.name = name;

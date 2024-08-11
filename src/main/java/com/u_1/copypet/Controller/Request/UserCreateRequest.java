@@ -1,4 +1,4 @@
-package com.u_1.copypet.Controller;
+package com.u_1.copypet.Controller.Request;
 
 import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
@@ -10,13 +10,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
 public class UserCreateRequest {
 
   @NotBlank
-  @Getter
   private String name;
   @Min(value = 18, message = "年齢は18歳以上で入力して下さい。")
   @Max(value = 90, message = "年齢は90歳以下で入力して下さい。")
