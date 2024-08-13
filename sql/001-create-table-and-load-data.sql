@@ -39,17 +39,17 @@ INSERT INTO pets (user_id, pet_name, age_in_days, pet_gender, bmr, daily_energy_
 DROP TABLE IF EXISTS foods;
 
 CREATE TABLE foods (
-  id int unsigned AUTO_INCREMENT,
+  food_id INT unsigned AUTO_INCREMENT,
   food_name VARCHAR(255) NOT NULL,
   calories INT NOT NULL,
   protein DOUBLE NOT NULL,
   carbohydrates DOUBLE NOT NULL,
   fat DOUBLE NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(food_id)
 );
 
-INSERT INTO foods (food_name, calories, protein, carbohydrates, fat) VALUES ("apple", 95, 0.5, 25, 0.3);
-INSERT INTO foods (food_name, calories, protein, carbohydrates, fat) VALUES ("banana", 105, 1.3, 27, 0.3);
-INSERT INTO foods (food_name, calories, protein, carbohydrates, fat) VALUES ("orange", 62, 1.2, 15, 0.2);
+INSERT INTO foods (food_id, food_name, calories, protein, carbohydrates, fat) VALUES ("apple", 95, 0.5, 25, 0.3);
+INSERT INTO foods (food_id, food_name, calories, protein, carbohydrates, fat) VALUES ("banana", 105, 1.3, 27, 0.3);
+INSERT INTO foods (food_id, food_name, calories, protein, carbohydrates, fat) VALUES ("orange", 62, 1.2, 15, 0.2);
 
 
