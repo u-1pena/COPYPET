@@ -50,7 +50,7 @@ public class UserIntegrationTest {
               "activityLevel": "HIGH"
           }    
           """;
-      mockMvc.perform(MockMvcRequestBuilders.post("/api/users/create")
+      mockMvc.perform(MockMvcRequestBuilders.post("/users")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isCreated())
