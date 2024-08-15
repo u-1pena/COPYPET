@@ -31,10 +31,11 @@ public class PetController {
       @PathVariable int userId,
       @RequestBody @Validated PetCreateRequest petCreateRequest,
       UriComponentsBuilder uriBuilder) {
-    User user = userService.findById(userId);
-    Pet pet = petCreateRequest.convertToEntity(user);
 
+    User user = userService.findById(userId);
+    
     petService.findPetByUserId(userId);
+    Pet pet = petCreateRequest.convertToEntity(user, petService);
     petService.createPet(pet);
 
     URI location = uriBuilder.path("/pets/{id}").buildAndExpand(pet.getUserId()).toUri();

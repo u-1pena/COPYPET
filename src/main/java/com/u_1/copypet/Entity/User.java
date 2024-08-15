@@ -14,7 +14,6 @@ import lombok.Data;
 @Data
 public class User {
 
-  @NotBlank
   private int id;
   @NotBlank
   private String name;
