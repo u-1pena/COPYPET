@@ -58,7 +58,7 @@ public class PetIntegrationTest {
     @Test
     @DataSet(value = {"datasets/users.yml", "datasets/pets.yml"})
     @Transactional
-    void ペット登録されているユーザーを検索したコンフリクトをかえすこと() throws Exception {
+    void ペットを登録されているユーザーを検索した場合重複エラーとなること() throws Exception {
       String requestBody = """
           {
               "petName": "testPet"
@@ -67,8 +67,8 @@ public class PetIntegrationTest {
       mockMvc.perform(MockMvcRequestBuilders.post("/pets/1")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
-          .andExpect(MockMvcResultMatchers.status().isConflict())
-          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Conflict"))
+          .andExpect(MockMvcResultMatchers.status().isBadRequest())
+          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Bad Request"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/pets/1"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.message")
               .value("Pet already exists with user id: 1"));
