@@ -25,11 +25,10 @@ public class PetService {
 
   //修正箇所
   public Optional<Pet> checkPetAlreadyRegisteredByUserId(int userId) {
-    petMapper.checkPetAlreadyRegisteredByUserId(userId)
-        .ifPresent(checkPetAlreadyRegisteredByUserId -> {
+    return petMapper.checkPetAlreadyRegisteredByUserId(userId)
+        .map(pet -> {
           throw new PetAlreadyExistsException("Pet already exists with user id: " + userId);
         });
-    return Optional.empty();
   }
 
 
