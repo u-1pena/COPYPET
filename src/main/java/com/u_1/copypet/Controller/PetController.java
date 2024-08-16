@@ -33,8 +33,8 @@ public class PetController {
       UriComponentsBuilder uriBuilder) {
 
     User user = userService.findById(userId);
-    
-    petService.findPetByUserId(userId);
+
+    petService.checkPetAlreadyRegisteredByUserId(userId);
     Pet pet = petCreateRequest.convertToEntity(user, petService);
     petService.createPet(pet);
 
