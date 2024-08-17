@@ -15,6 +15,6 @@ public interface PetMapper {
 
   //PetのuserIdを元にPetを取得する。既に登録されているペットを取得する処理
   @Select("SELECT * FROM pets WHERE user_id = #{userId}")
-  Optional<Pet> checkPetAlreadyRegisteredByUserId(int userId);
+  Optional<Pet> findPetByUserId(int userId);
 }
 

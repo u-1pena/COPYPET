@@ -67,8 +67,8 @@ public class PetIntegrationTest {
       mockMvc.perform(MockMvcRequestBuilders.post("/pets/1")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
-          .andExpect(MockMvcResultMatchers.status().isBadRequest())
-          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Bad Request"))
+          .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
+          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Unprocessable Entity"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/pets/1"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.message")
               .value("Pet already exists with user id: 1"));
@@ -77,7 +77,7 @@ public class PetIntegrationTest {
     @Test
     @DataSet(value = {"datasets/users.yml", "datasets/pets.yml"})
     @Transactional
-    void ユーザー登録されていないユーザーIDでペット登録をすると404を返すこと() throws Exception {
+    void 登録されていないユーザーIDでペット登録をすると失敗すること() throws Exception {
       String requestBody = """
           {
               "petName": "testPet"

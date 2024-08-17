@@ -34,7 +34,7 @@ public class PetController {
 
     User user = userService.findById(userId);
 
-    petService.checkPetAlreadyRegisteredByUserId(userId);
+    petService.findPetByUserId(userId);
     Pet pet = petCreateRequest.convertToEntity(user, petService);
     petService.createPet(pet);
 
