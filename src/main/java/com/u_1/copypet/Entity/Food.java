@@ -12,7 +12,7 @@ public class Food {
   private double foodFat;
   private double foodCarbohydrates;
 
-  public Food(int foodId, String foodName, int foodCalorie, double foodProtein, double foodFat,
+  public Food(String foodName, int foodCalorie, double foodProtein, double foodFat,
       double foodCarbohydrates) {
     this.foodId = foodId;
     this.foodName = foodName;

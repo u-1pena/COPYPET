@@ -10,9 +10,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@RequestMapping("/api/foods")
+@RestController
 public class FoodController {
 
   private final FoodService foodService;
@@ -22,11 +23,11 @@ public class FoodController {
 
   }
 
-  @PostMapping("/create")
-
+  @PostMapping("/food")
   public ResponseEntity<ApplicationResponse> createFood() {
     @RequestBody @Validated FoodCreateRequest foodCreateRequest, UriComponentsBuilder uriBuilder)
-    {Food food = foodCreateRequest.convertToEntity();
+    {
+      Food food = foodCreateRequest.convertToEntity();
     }
     foodService.createFood();
     ApplicationResponse body = new ApplicationResponse("food created");
