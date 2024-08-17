@@ -24,10 +24,10 @@ public class FoodController {
   }
 
   @PostMapping("/food")
-  public ResponseEntity<ApplicationResponse> createFood() {
-    @RequestBody @Validated FoodCreateRequest foodCreateRequest, UriComponentsBuilder uriBuilder)
-    {
-      Food food = foodCreateRequest.convertToEntity();
+  public ResponseEntity<ApplicationResponse> createFood(
+      @RequestBody @Validated FoodCreateRequest foodCreateRequest,
+      UriComponentsBuilder uriBuilder) {
+      Food food = foodService.createFood(foodCreateRequest.convertToEntity());
     }
     foodService.createFood();
     ApplicationResponse body = new ApplicationResponse("food created");
