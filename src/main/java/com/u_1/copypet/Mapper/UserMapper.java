@@ -14,7 +14,7 @@ public interface UserMapper {
 
   @Insert("INSERT INTO users (name, age, gender, height, weight, activity_level) VALUES (#{name}, #{age}, #{gender}, #{height}, #{weight}, #{activityLevel})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
-  void createUser(User user);
+  void insertUser(User user);
 
   @Results(value = {
       @Result(property = "id", column = "id"),

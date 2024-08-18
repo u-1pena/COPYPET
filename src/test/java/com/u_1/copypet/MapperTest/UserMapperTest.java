@@ -32,6 +32,6 @@ class UserMapperTest {
   @Transactional
   void ユーザーを新規で登録できること() {
     User user = new User("testUser", 40, Gender.MALE, 170.0, 80.0, ActivityLevel.HIGH);
-    userMapper.createUser(user);
+    userMapper.insertUser(user);
   }
 }

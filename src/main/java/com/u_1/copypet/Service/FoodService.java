@@ -1,5 +1,6 @@
 package com.u_1.copypet.Service;
 
+import com.u_1.copypet.Entity.Food;
 import com.u_1.copypet.Mapper.FoodMapper;
 
 public class FoodService {
@@ -10,7 +11,8 @@ public class FoodService {
     this.foodMapper = foodMapper;
   }
 
-  public void createFood() {
-    foodMapper.createFood();
+  public Food createFood(Food food) {
+    foodMapper.insertFood(food);
+    return food;
   }
 }
