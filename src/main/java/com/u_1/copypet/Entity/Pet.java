@@ -1,14 +1,12 @@
 package com.u_1.copypet.Entity;
 
 import com.u_1.copypet.Entity.Enum.Gender;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class Pet {
 
   private int userId;
-  @NotBlank(message = "ペット名を入力してください")
   private String petName;//ペットの名前
   private int ageInDays;//ペットの年齢
   private Gender petGender;//ペットの性別
