@@ -9,29 +9,29 @@ public class FoodCreateRequest {
 
   @NotBlank(message = "食品名を入力してください")
   private String foodName;
-  private int calorie;
-  private double protein;
-  private double fat;
-  private double carbohydrates;
+  private int foodCalories;
+  private double foodProtein;
+  private double foodFat;
+  private double foodCarbohydrates;
 
   public FoodCreateRequest() {
     this.foodName = "";
-    this.calorie = 0;
-    this.protein = 0.0;
-    this.fat = 0.0;
-    this.carbohydrates = 0.0;
+    this.foodCalories = 0;
+    this.foodProtein = 0.0;
+    this.foodFat = 0.0;
+    this.foodCarbohydrates = 0.0;
   }
 
-  public FoodCreateRequest(String foodName, int calorie, double protein, double fat,
-      double carbohydrates) {
+  public FoodCreateRequest(String foodName, int foodCalories, double foodProtein, double foodFat,
+      double foodCarbohydrates) {
     this.foodName = foodName;
-    this.calorie = calorie;
-    this.protein = protein;
-    this.fat = fat;
-    this.carbohydrates = carbohydrates;
+    this.foodCalories = foodCalories;
+    this.foodProtein = foodProtein;
+    this.foodFat = foodFat;
+    this.foodCarbohydrates = foodCarbohydrates;
   }
 
   public Food convertToEntity() {
-    return new Food(foodName, calorie, protein, fat, carbohydrates);
+    return new Food(foodName, foodCalories, foodProtein, foodFat, foodCarbohydrates);
   }
 }
