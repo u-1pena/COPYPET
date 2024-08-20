@@ -1,0 +1,40 @@
+pets:
+  - user_id: 1
+    pet_name: "ganmo"
+    age_in_days: 0
+    pet_gender: "MALE"
+    bmr: 0.0
+    daily_energy_requirement: 0.0
+    in_take_calories_today: 0.0
+    calorie_expenditure_today: 0.0
+    sleep_time: 0.0
+    in_take_protein_today: 0.0
+    in_take_fat_today: 0.0
+    in_take_carbohydrates_today: 0.0
+    pet_level: 0
+  - user_id: 2
+    pet_name: "yurina"
+    age_in_days: 0
+    pet_gender: "FEMALE"
+    bmr: 0.0
+    daily_energy_requirement: 0.0
+    in_take_calories_today: 0.0
+    calorie_expenditure_today: 0.0
+    sleep_time: 0.0
+    in_take_protein_today: 0.0
+    in_take_fat_today: 0.0
+    in_take_carbohydrates_today: 0.0
+    pet_level: 0
+  - user_id: 3
+    pet_name: "testPet"
+    age_in_days: 0
+    pet_gender: "MALE"
+    bmr: 1748.87
+    daily_energy_requirement: 3497.74
+    in_take_calories_today: 0.0
+    calorie_expenditure_today: 0.0
+    sleep_time: 0.0
+    in_take_protein_today: 0.0
+    in_take_fat_today: 0.0
+    in_take_carbohydrates_today: 0.0
+    pet_level: 1

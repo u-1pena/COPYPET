@@ -1,5 +1,7 @@
-package com.u_1.copypet.Controller;
+package com.u_1.copypet.Controller.Response;
 
+import jakarta.servlet.http.HttpServletRequest;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApplicationExceptionHandler extends RuntimeException {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-//POST,PATCH(登録、更新時）のValidationを実装
   public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException e) {
     List<Map<String, String>> errors = new ArrayList<>();
@@ -24,9 +25,36 @@ public class ApplicationExceptionHandler extends RuntimeException {
       error.put("message", fieldError.getDefaultMessage());
       errors.add(error);
     });
-    ErrorResponse errorResponse =
-        new ErrorResponse(HttpStatus.BAD_REQUEST, "validation error", errors);
+
+    ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, "validation error",
+        errors);
     return ResponseEntity.badRequest().body(errorResponse);
+  }
+
+  @ExceptionHandler(UserNotFoundException.class)
+  public ResponseEntity<Map<String, String>> handleUserNotFoundException(
+      UserNotFoundException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+        "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+
+    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(PetAlreadyExistsException.class)
+  public ResponseEntity<Map<String, String>> handlePetAlreadyExistsException(
+      PetAlreadyExistsException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.UNPROCESSABLE_ENTITY.value()),
+        "error", HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+
+    return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
   }
 
   public static final class ErrorResponse {
@@ -53,5 +81,4 @@ public class ApplicationExceptionHandler extends RuntimeException {
       return errors;
     }
   }
-
 }

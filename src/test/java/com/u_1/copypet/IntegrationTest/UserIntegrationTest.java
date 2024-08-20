@@ -1,4 +1,4 @@
-package com.u_1.copypet;
+package com.u_1.copypet.IntegrationTest;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -35,6 +36,8 @@ public class UserIntegrationTest {
     @Test
     @DataSet(value = "datasets/users.yml")
     @ExpectedDataSet(value = "datasets/insertUsers.yml", ignoreCols = "id")
+    @Sql(statements = "SET FOREIGN_KEY_CHECKS = 0", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(statements = "SET FOREIGN_KEY_CHECKS = 1", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @Transactional
     void ユーザーを新規で登録すること() throws Exception {
       String requestBody = """
@@ -54,7 +57,7 @@ public class UserIntegrationTest {
           .andExpect(MockMvcResultMatchers.content().json(
               """
                   {
-                      "message": "ユーザー登録が完了しました！"
+                      "message": "user created"
                   }
                   """
           ));
