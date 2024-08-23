@@ -1,9 +1,9 @@
 package com.u_1.copypet.Controller.Request;
 
-import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
 import com.u_1.copypet.Entity.Pet;
 import com.u_1.copypet.Entity.User;
+import com.u_1.copypet.Service.PetService;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -40,7 +40,6 @@ public class PetCreateRequest {
     this.petLevel = 1;
   }
 
-
   public PetCreateRequest(String petName, int ageInDays, Gender petGender, double bmr,
       double dailyEnergyRequirement, double inTakeCaloriesToday, double calorieExpenditureToday,
       double sleepTime, double inTakeProteinToday, double inTakeFatToday,
@@ -59,35 +58,15 @@ public class PetCreateRequest {
     this.petLevel = petLevel;
   }
 
-  public Pet convertToEntity(User user) {
-    double bmr = calculateBmr(user.getGender(), user.getAge(), user.getHeight(), user.getWeight());
-    double dailyEnergyRequirement = calculateDailyEnergyRequirement(bmr, user.getActivityLevel());
-
-    return new Pet(user.getId(), petName, ageInDays, user.getGender(), bmr, dailyEnergyRequirement,
+  public Pet convertToEntity(User user, PetService petService) {
+    return new Pet(user.getId(), getPetName(), ageInDays, user.getGender(),
+        petService.calculateBmr(user.getGender(), user.getAge(), user.getHeight(),
+            user.getWeight()),
+        petService.calculateDailyEnergyRequirement(
+            petService.calculateBmr(user.getGender(), user.getAge(), user.getHeight(),
+                user.getWeight()), user.getActivityLevel()),
         inTakeCaloriesToday, calorieExpenditureToday, sleepTime, inTakeProteinToday, inTakeFatToday,
-        inTakeCarbohydratesToday, 0);
-  }
-
-  //bmr
-  public double calculateBmr(Gender gender, int age, double height, double weight) {
-    if (gender == Gender.MALE) {
-      return Math.round((88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)) * 100)
-          / 100.0;
-    } else { // Gender.FEMALE
-      return Math.round((447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)) * 100)
-          / 100.0;
-    }
-  }
-
-
-  //bmr*ActivityLevel
-  public double calculateDailyEnergyRequirement(double bmr, ActivityLevel activityLevel) {
-
-    return switch (activityLevel) {
-      case LOW -> bmr * 1.2;
-      case MEDIUM -> bmr * 1.75;
-      case HIGH -> bmr * 2.0;
-      default -> 0;
-    };
+        inTakeCarbohydratesToday, petLevel);
   }
 }
+

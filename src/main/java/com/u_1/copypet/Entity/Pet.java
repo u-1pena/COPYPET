@@ -20,6 +20,7 @@ public class Pet {
   private double inTakeCarbohydratesToday;//今日の炭水化物量
   private int petLevel;//ペットのレベル
 
+
   public Pet(int userId, String petName, int ageInDays, Gender petGender,
       double bmr, double dailyEnergyRequirement,
       double inTakeCaloriesToday, double calorieExpenditureToday,

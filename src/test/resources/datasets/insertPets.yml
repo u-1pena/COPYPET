@@ -37,4 +37,4 @@ pets:
     in_take_protein_today: 0.0
     in_take_fat_today: 0.0
     in_take_carbohydrates_today: 0.0
-    pet_level: 0
+    pet_level: 1

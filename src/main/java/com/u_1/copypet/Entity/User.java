@@ -9,11 +9,16 @@ import lombok.Data;
 public class User {
 
   private int id;
+
   private String name;
+
   private int age;
   private Gender gender;
-  private double height;
-  private double weight;
+
+  private Double height;
+
+  private Double weight;
+
   private ActivityLevel activityLevel;
 
 

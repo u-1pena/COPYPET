@@ -42,7 +42,7 @@ public class PetIntegrationTest {
               "petName": "testPet"
           }
           """;
-      mockMvc.perform(MockMvcRequestBuilders.post("/api/pets/create/3")
+      mockMvc.perform(MockMvcRequestBuilders.post("/pets/3")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isCreated())
@@ -58,18 +58,18 @@ public class PetIntegrationTest {
     @Test
     @DataSet(value = {"datasets/users.yml", "datasets/pets.yml"})
     @Transactional
-    void ペット登録されているユーザーを検索したコンフリクトをかえすこと() throws Exception {
+    void ペットを登録されているユーザーを検索した場合重複エラーとなること() throws Exception {
       String requestBody = """
           {
               "petName": "testPet"
           }
           """;
-      mockMvc.perform(MockMvcRequestBuilders.post("/api/pets/create/1")
+      mockMvc.perform(MockMvcRequestBuilders.post("/pets/1")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
-          .andExpect(MockMvcResultMatchers.status().isConflict())
-          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Conflict"))
-          .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/api/pets/create/1"))
+          .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
+          .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Unprocessable Entity"))
+          .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/pets/1"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.message")
               .value("Pet already exists with user id: 1"));
     }
@@ -77,18 +77,18 @@ public class PetIntegrationTest {
     @Test
     @DataSet(value = {"datasets/users.yml", "datasets/pets.yml"})
     @Transactional
-    void ユーザー登録されていないユーザーIDでペット登録をすると404を返すこと() throws Exception {
+    void 登録されていないユーザーIDでペット登録をすると失敗すること() throws Exception {
       String requestBody = """
           {
               "petName": "testPet"
           }
           """;
-      mockMvc.perform(MockMvcRequestBuilders.post("/api/pets/create/3")
+      mockMvc.perform(MockMvcRequestBuilders.post("/pets/3")
               .contentType(MediaType.APPLICATION_JSON)
               .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isNotFound())
           .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Not Found"))
-          .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/api/pets/create/3"))
+          .andExpect(MockMvcResultMatchers.jsonPath("$.path").value("/pets/3"))
           .andExpect(MockMvcResultMatchers.jsonPath("$.message")
               .value("user not found with id: 3"));
     }

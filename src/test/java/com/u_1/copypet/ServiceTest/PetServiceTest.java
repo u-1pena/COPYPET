@@ -52,8 +52,8 @@ public class PetServiceTest {
     @Test
     void ペット登録されていないユーザーを検索すること() {
       doReturn(Optional.empty()).when(petMapper).findPetByUserId(1);
-      Pet actual = petService.findPetByUserId(1);
-      assertThat(actual).isNull();
+      Optional<Pet> actual = petService.findPetByUserId(1);
+      assertThat(actual).isEmpty();
       verify(petMapper).findPetByUserId(1);
     }
 

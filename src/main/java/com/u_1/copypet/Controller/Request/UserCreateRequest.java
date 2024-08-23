@@ -16,9 +16,11 @@ public class UserCreateRequest {
 
   @NotBlank
   private String name;
+  
   @Min(value = 18, message = "年齢は18歳以上で入力して下さい。")
   @Max(value = 90, message = "年齢は90歳以下で入力して下さい。")
   private int age;
+
   @Pattern(regexp = "MALE|FEMALE", message = "性別はMALE,FEMALEのどちらかで入力して下さい。")
   private String gender;
 
@@ -29,7 +31,6 @@ public class UserCreateRequest {
   @DecimalMin(value = "40.0", message = "体重は「40.0 kg」以上で入力して下さい。")
   @DecimalMax(value = "120.0", message = "体重は「120.0 kg」以下で入力して下さい。")
   private Double weight;
-
   @Pattern(regexp = "LOW|MEDIUM|HIGH", message = "活動レベルはLOW,MEDIUM,HIGHのいずれかで選択して下さい。")
   private String activityLevel;
 

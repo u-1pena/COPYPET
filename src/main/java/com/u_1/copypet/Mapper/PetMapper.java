@@ -17,3 +17,4 @@ public interface PetMapper {
   @Select("SELECT * FROM pets WHERE user_id = #{userId}")
   Optional<Pet> findPetByUserId(int userId);
 }
+
