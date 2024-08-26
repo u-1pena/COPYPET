@@ -35,7 +35,7 @@ public class FoodIntegrationTest {
     @DataSet(value = "datasets/foods.yml")
     @ExpectedDataSet(value = "datasets/insertFoods.yml", ignoreCols = "food_id")
     @Transactional
-    void 食べ物を新規で登録すること() throws Exception {
+    void 食べ物を新規で登録できること() throws Exception {
 
       String requestBody = """
           {

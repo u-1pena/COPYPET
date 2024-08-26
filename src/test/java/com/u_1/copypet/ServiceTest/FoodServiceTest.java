@@ -24,7 +24,7 @@ public class FoodServiceTest {
   FoodMapper foodMapper;
 
   @Test
-  void 新規に食べ物を登録すること() {
+  void 新規に食べ物を登録できること() {
     Food food = new Food("testFood", 100, 14.2, 0.8, 23.5);
     doNothing().when(foodMapper).insertFood(food);
     assertThat(foodService.createFood(food)).isEqualTo(food);
