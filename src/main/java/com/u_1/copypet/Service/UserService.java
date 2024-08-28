@@ -16,7 +16,7 @@ public class UserService {
 
   //ユーザー新規登録
   public User createUser(User user) {
-    userMapper.createUser(user);
+    userMapper.insertUser(user);
     return user;
   }
 

@@ -30,9 +30,9 @@ public class UserServiceTest {
     @Test
     void ユーザーを新規登録すること() {
       User user = new User("yuichi", 39, Gender.MALE, 165.5, 65.0, ActivityLevel.MEDIUM);
-      doNothing().when(userMapper).createUser(user);
+      doNothing().when(userMapper).insertUser(user);
       assertThat(userService.createUser(user)).isEqualTo(user);
-      verify(userMapper).createUser(user);
+      verify(userMapper).insertUser(user);
     }
 
   }
