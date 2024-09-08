@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ApplicationExceptionHandler extends RuntimeException {
+public class ApplicationExceptionHandler {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
@@ -47,6 +47,45 @@ public class ApplicationExceptionHandler extends RuntimeException {
   @ExceptionHandler(PetAlreadyExistsException.class)
   public ResponseEntity<Map<String, String>> handlePetAlreadyExistsException(
       PetAlreadyExistsException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.UNPROCESSABLE_ENTITY.value()),
+        "error", HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+
+    return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler(PetNotFoundException.class)
+  public ResponseEntity<Map<String, String>> handlePetNotFoundException(
+      PetNotFoundException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+        "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+
+    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(BreedingNotFoundException.class)
+  public ResponseEntity<Map<String, String>> handleBreedingNotFoundException(
+      BreedingNotFoundException e, HttpServletRequest request) {
+    Map<String, String> body = Map.of(
+        "timestamp", ZonedDateTime.now().toString(),
+        "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+        "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+        "message", e.getMessage(),
+        "path", request.getRequestURI());
+
+    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(BreedingAlreadyExistsException.class)
+  public ResponseEntity<Map<String, String>> handleBreedingAlreadyExistsException(
+      BreedingAlreadyExistsException e, HttpServletRequest request) {
     Map<String, String> body = Map.of(
         "timestamp", ZonedDateTime.now().toString(),
         "status", String.valueOf(HttpStatus.UNPROCESSABLE_ENTITY.value()),

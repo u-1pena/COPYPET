@@ -1,5 +1,5 @@
 pets:
-  - user_id: 1
+  - id: 1
     pet_name: "ganmo"
     age_in_days: 0
     pet_gender: "MALE"
@@ -12,7 +12,7 @@ pets:
     in_take_fat_today: 0.0
     in_take_carbohydrates_today: 0.0
     pet_level: 0
-  - user_id: 2
+  - id: 2
     pet_name: "yurina"
     age_in_days: 0
     pet_gender: "FEMALE"
@@ -25,7 +25,7 @@ pets:
     in_take_fat_today: 0.0
     in_take_carbohydrates_today: 0.0
     pet_level: 0
-  - user_id: 3
+  - id: 3
     pet_name: "testPet"
     age_in_days: 0
     pet_gender: "MALE"

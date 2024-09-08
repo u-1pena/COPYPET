@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Pet {
 
-  private int userId;
+  private int id;
   private String petName;//ペットの名前
   private int ageInDays;//ペットの年齢
   private Gender petGender;//ペットの性別
@@ -20,13 +20,12 @@ public class Pet {
   private double inTakeCarbohydratesToday;//今日の炭水化物量
   private int petLevel;//ペットのレベル
 
-
-  public Pet(int userId, String petName, int ageInDays, Gender petGender,
+  public Pet(int id, String petName, int ageInDays, Gender petGender,
       double bmr, double dailyEnergyRequirement,
       double inTakeCaloriesToday, double calorieExpenditureToday,
       double sleepTime, double inTakeProteinToday, double inTakeFatToday,
       double inTakeCarbohydratesToday, int petLevel) {
-    this.userId = userId;
+    this.id = id;
     this.petName = petName;
     this.ageInDays = ageInDays;
     this.petGender = petGender;

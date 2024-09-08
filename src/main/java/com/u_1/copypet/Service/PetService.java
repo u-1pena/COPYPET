@@ -1,6 +1,7 @@
 package com.u_1.copypet.Service;
 
 import com.u_1.copypet.Controller.Response.PetAlreadyExistsException;
+import com.u_1.copypet.Controller.Response.PetNotFoundException;
 import com.u_1.copypet.Entity.Enum.ActivityLevel;
 import com.u_1.copypet.Entity.Enum.Gender;
 import com.u_1.copypet.Entity.Pet;
@@ -23,12 +24,19 @@ public class PetService {
     return pet;
   }
 
-  //修正箇所
-  public Optional<Pet> findPetByUserId(int userId) {
-    return petMapper.findPetByUserId(userId)
+  //userIdでペットを検索し、存在すれば例外をスローするメソッド(userを登録する差際に使用)
+  public Optional<Pet> checkUserHasNoPet(int id) {
+    return petMapper.findPetById(id)
         .map(pet -> {
-          throw new PetAlreadyExistsException("Pet already exists with user id: " + userId);
+          throw new PetAlreadyExistsException("Pet already exists with user id: " + id);
         });
+  }
+
+  //userIdでペットを検索し、存在しなければ例外をスローするメソッド(breedingを登録する際に使用)
+  public Pet findPetById(int id) {
+    return petMapper.findPetById(id)
+        .orElseThrow(() -> new PetNotFoundException("Pet not found with pet id: " + id));
+
   }
 
 
