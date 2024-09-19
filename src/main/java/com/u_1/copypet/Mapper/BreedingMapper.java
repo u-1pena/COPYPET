@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface BreedingMapper {
 
-  @Insert("INSERT INTO breeding (id, in_take_calories_today, in_take_protein_today, in_take_fat_today, in_take_carbohydrates_today, exercise_to_burn_calories_today, sleeping_time_today, breeding_date) VALUES (#{id}, #{inTakeCaloriesToday}, #{inTakeProteinToday}, #{inTakeFatToday}, #{inTakeCarbohydratesToday}, #{exerciseToBurnCaloriesToday}, #{sleepTimeToday}, #{breedingDate})")
+  @Insert("INSERT INTO breeding (id, daily_kcal, daily_protein, daily_fat, daily_carbohydrate, daily_exercise, daily_sleep, breeding_date) VALUES (#{id}, #{dailyKcal}, #{dailyProtein}, #{dailyFat}, #{dailyCarbohydrate}, #{dailyExercise}, #{dailySleep}, #{breedingDate})")
   void insertBreeding(Breeding breeding);
 
   @Select("SELECT * FROM breeding WHERE id = #{id}")

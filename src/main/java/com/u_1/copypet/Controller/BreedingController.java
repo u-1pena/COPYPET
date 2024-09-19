@@ -38,6 +38,4 @@ public class BreedingController {
     ApplicationResponse body = new ApplicationResponse("breeding created");
     return ResponseEntity.created(location).body(body);
   }
-
-
 }

@@ -19,6 +19,10 @@ Javaを学習中に簡単なAPIを作成したが、もっとおおきなプロ�
 
 ゲーム感覚で記録できるAPPがなかったので作成に至った。
 
+# ER図
+
+![ER図](img/ER.Diagram.png "ER")
+
 # API一覧
 
 |   API    | Method |         path          |

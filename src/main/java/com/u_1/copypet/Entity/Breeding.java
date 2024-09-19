@@ -7,36 +7,34 @@ import lombok.Data;
 public class Breeding {
 
   private int id;
-  private int inTakeCaloriesToday;//今日の摂取カロリー
-  private double inTakeProteinToday;//今日のタンパク質摂取量
-  private double inTakeFatToday;//今日の脂肪摂取量
-  private double inTakeCarbohydratesToday;//今日の炭水化物量
-  private int exerciseToBurnCaloriesToday;//消費カロリー
-  private double sleepTimeToday;//睡眠時間
+  private int dailyKcal;//今日の摂取カロリー
+  private double dailyProtein;//今日のタンパク質摂取量
+  private double dailyFat;//今日の脂肪摂取量
+  private double dailyCarbohydrate;//今日の炭水化物量
+  private int dailyExercise;//消費カロリー
+  private double dailySleep;//睡眠時間
   private LocalDate breedingDate;//日付
 
-  public Breeding(int id, int inTakeCaloriesToday, double inTakeProteinToday,
-      double inTakeFatToday, double inTakeCarbohydratesToday, int exerciseToBurnCaloriesToday,
-      double sleepTimeToday, LocalDate breedingDate) {
+  public Breeding(int id, int dailyKcal, double dailyProtein, double dailyFat,
+      double dailyCarbohydrate, int dailyExercise, double dailySleep, LocalDate breedingDate) {
     this.id = id;
-    this.inTakeCaloriesToday = inTakeCaloriesToday;
-    this.inTakeProteinToday = inTakeProteinToday;
-    this.inTakeFatToday = inTakeFatToday;
-    this.inTakeCarbohydratesToday = inTakeCarbohydratesToday;
-    this.exerciseToBurnCaloriesToday = exerciseToBurnCaloriesToday;
-    this.sleepTimeToday = sleepTimeToday;
+    this.dailyKcal = dailyKcal;
+    this.dailyProtein = dailyProtein;
+    this.dailyFat = dailyFat;
+    this.dailyCarbohydrate = dailyCarbohydrate;
+    this.dailyExercise = dailyExercise;
+    this.dailySleep = dailySleep;
     this.breedingDate = breedingDate;
   }
 
-  public Breeding(int inTakeCaloriesToday, double inTakeProteinToday, double inTakeFatToday,
-      double inTakeCarbohydratesToday, int exerciseToBurnCaloriesToday, double sleepTimeToday,
-      LocalDate breedingDate) {
-    this.inTakeCaloriesToday = inTakeCaloriesToday;
-    this.inTakeProteinToday = inTakeProteinToday;
-    this.inTakeFatToday = inTakeFatToday;
-    this.inTakeCarbohydratesToday = inTakeCarbohydratesToday;
-    this.exerciseToBurnCaloriesToday = exerciseToBurnCaloriesToday;
-    this.sleepTimeToday = sleepTimeToday;
+  public Breeding(int dailyKcal, double dailyProtein, double dailyFat,
+      double dailyCarbohydrate, int dailyExercise, double dailySleep, LocalDate breedingDate) {
+    this.dailyKcal = dailyKcal;
+    this.dailyProtein = dailyProtein;
+    this.dailyFat = dailyFat;
+    this.dailyCarbohydrate = dailyCarbohydrate;
+    this.dailyExercise = dailyExercise;
+    this.dailySleep = dailySleep;
     this.breedingDate = breedingDate;
   }
 }

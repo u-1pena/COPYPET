@@ -56,14 +56,15 @@ DROP TABLE IF EXISTS breeding;
 
 CREATE TABLE breeding (
   id INT UNSIGNED,
-  in_take_calories_today INT,
-  in_take_protein_today DOUBLE,
-  in_take_fat_today DOUBLE,
-  in_take_carbohydrates_today DOUBLE,
-  exercise_to_burn_calories_today DOUBLE,
-  sleeping_time_today DOUBLE,
+  daily_kcal INT,
+  daily_protein DOUBLE,
+  daily_fat DOUBLE,
+  daily_carbohydrate DOUBLE,
+  daily_exercise INT,
+  daily_sleep DOUBLE,
   breeding_date DATE,
   PRIMARY KEY(id)
   );
 
-INSERT INTO breeding (id, in_take_calories_today, in_take_protein_today, in_take_fat_today, in_take_carbohydrates_today, exercise_to_burn_calories_today, sleeping_time_today, breeding_date) VALUES (1, 120, 4.5, 11.0, 75.0, 750.5, 4.5, '2021-01-01');
+INSERT INTO breeding (id, daily_kcal, daily_protein, daily_fat, daily_carbohydrate, daily_exercise, daily_sleep, breeding_date) VALUES (1, 120, 4.5, 11.0, 75.0, 750, 4.5, '2021-01-01');
+

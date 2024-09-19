@@ -15,18 +15,21 @@ public class BreedingService {
     this.breedingMapper = breedingMapper;
   }
 
+  //CREATE処理 breedingを作成するメソッド
   public Breeding createBreeding(Breeding breeding) {
     breedingMapper.insertBreeding(breeding);
     return breeding;
   }
 
+  //READ処理 breedingを取得するメソッド。登録の際、重複登録を防ぐため例外を投げる
   public Optional<Breeding> findBreedingById(int id) {
     return this.breedingMapper.findBreedingById(id)
         .map(breeding -> {
           throw new BreedingAlreadyExistsException(
-              "Breeding already exists with pet id: " + id);
+              "Breeding already exists with id: " + id);
         });
 
   }
+
 }
 
