@@ -33,7 +33,7 @@ public class BreedingMapperTest {
     @ExpectedDataSet(value = "datasets/insertBreeding.yml", ignoreCols = "id")
     @Transactional
     void 新規に育成データを記録すること() {
-      Breeding breeding = new Breeding(3, 0, 0.0, 0.0, 0.0, 0, 0.0,
+      Breeding breeding = new Breeding(3, 220, 1.5, 0.0, 0.0, 0, 0.0,
           LocalDate.of(2022, 1, 3));
       breedingMapper.insertBreeding(breeding);
     }
