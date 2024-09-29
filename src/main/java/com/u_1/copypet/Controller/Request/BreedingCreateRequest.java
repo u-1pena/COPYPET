@@ -22,13 +22,6 @@ public class BreedingCreateRequest {
 
   public BreedingCreateRequest() {
 
-    this.dailyKcal = 0;
-    this.dailyProtein = 0.0;
-    this.dailyFat = 0.0;
-    this.dailyCarbohydrate = 0.0;
-    this.dailyExercise = 0;
-    this.dailySleep = 0.0;
-    this.breedingDate = LocalDate.now();
   }
 
   public BreedingCreateRequest(int dailyKcal, double dailyProtein, double dailyFat,
@@ -43,7 +36,6 @@ public class BreedingCreateRequest {
     this.breedingDate = breedingDate;
   }
 
-  //defoltの値を設定するところからスタート
   public Breeding convertToEntity(Pet pet) {
     return new Breeding(pet.getId(),
         dailyKcal != null ? dailyKcal : 0,
