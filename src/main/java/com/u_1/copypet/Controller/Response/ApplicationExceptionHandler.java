@@ -15,10 +15,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
 
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException e) {
+
     List<Map<String, String>> errors = new ArrayList<>();
+
+    //クラス全体のValidationエラー
+    e.getBindingResult().getGlobalErrors().forEach(globalError -> {
+      Map<String, String> error = new HashMap<>();
+      error.put("entity", globalError.getObjectName());
+      error.put("message", globalError.getDefaultMessage());
+      errors.add(error);
+    });
+
+    //フィールドのValidationエラー
     e.getBindingResult().getFieldErrors().forEach(fieldError -> {
       Map<String, String> error = new HashMap<>();
       error.put("field", fieldError.getField());
@@ -120,4 +132,5 @@ public class ApplicationExceptionHandler {
       return errors;
     }
   }
+
 }

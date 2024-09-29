@@ -18,8 +18,8 @@ breeding:
     breeding_date: "2022-01-02"
 
   - id: 3
-    daily_kcal: 0
-    daily_protein: 0.0
+    daily_kcal: 220
+    daily_protein: 1.5
     daily_fat: 0.0
     daily_carbohydrate: 0.0
     daily_exercise: 0

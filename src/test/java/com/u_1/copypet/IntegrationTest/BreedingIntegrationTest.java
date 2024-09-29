@@ -35,12 +35,24 @@ public class BreedingIntegrationTest {
     @ExpectedDataSet(value = "datasets/insertBreeding.yml", ignoreCols = "breeding_date")
     @Transactional
     void 新規に育成データを記録すること() throws Exception {
-      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/3"))
+      String requestBody = """
+          {
+              "dailyKcal": 220,
+              "dailyProtein": 1.5,
+              "dailyFat": 0.0,
+              "dailyCarbohydrate": 0.0,
+              "dailyExercise": 0,
+              "dailySleep": 0.0
+          }
+          """;
+      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/3")
+              .contentType("application/json")
+              .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isCreated())
           .andExpect(MockMvcResultMatchers.content().json(
               """
                   {
-                    "message": "breeding created"
+                        "message": "breeding created"
                   }
                   """
           ));
@@ -50,7 +62,19 @@ public class BreedingIntegrationTest {
     @DataSet(value = "datasets/breeding.yml")
     @Transactional
     void ペット登録されていないIDを指定して育成データを登録しようとするとエラーをかえすこと() throws Exception {
-      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/0"))
+      String requestBody = """
+          {
+              "dailyKcal": 220,
+              "dailyProtein": 1.5,
+              "dailyFat": 0.0,
+              "dailyCarbohydrate": 0.0,
+              "dailyExercise": 0,
+              "dailySleep": 0.0
+          }
+          """;
+      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/0")
+              .contentType("application/json")
+              .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isNotFound())
           .andExpect(MockMvcResultMatchers.content().json(
               """
@@ -64,12 +88,92 @@ public class BreedingIntegrationTest {
     @Test
     @DataSet(value = {"datasets/breeding.yml", "datasets/insertPets.yml"})
     void 既に育成データが登録されているIDで登録しようとするとエラーを返すこと() throws Exception {
-      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/1"))
+      String requestBody = """
+          {
+              "dailyKcal": 220,
+              "dailyProtein": 1.5,
+              "dailyFat": 0.0,
+              "dailyCarbohydrate": 0.0,
+              "dailyExercise": 0,
+              "dailySleep": 0.0
+          }
+          """;
+      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/1")
+              .contentType("application/json")
+              .content(requestBody))
           .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
           .andExpect(MockMvcResultMatchers.content().json(
               """
                   {
                     "message": "Breeding already exists with id: 1"
+                  }
+                  """
+          ));
+    }
+
+    @Test
+    @DataSet(value = "datasets/breeding.yml")
+    @Transactional
+    void リクエストボディに何も入れなかった場合Validationエラーが発生すること() throws Exception {
+      String requestBody = """
+          {
+              "dailyKcal": "",
+              "dailyProtein": "",
+              "dailyFat": "",
+              "dailyCarbohydrate": "",
+              "dailyExercise": "",
+              "dailySleep": ""
+          }
+          """;
+      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/1")
+              .contentType("application/json")
+              .content(requestBody))
+          .andExpect(MockMvcResultMatchers.status().isBadRequest())
+          .andExpect(MockMvcResultMatchers.content().json(
+              """
+                  {
+                      "status": "BAD_REQUEST",
+                      "message": "validation error",
+                      "errors": [
+                          {
+                              "message": "At least one field must be completed, and if nutrients are entered, calories are also required",
+                              "entity": "breedingCreateRequest"
+                          }
+                      ]
+                  }
+                  """
+          ));
+    }
+
+    @Test
+    @DataSet(value = "datasets/breeding.yml")
+    @Transactional
+    void 栄養素が入力されているがdailyKcalが0の場合Validationエラーが発生すること() throws Exception {
+      String requestBody = """
+          {
+              "dailyKcal": 0,
+              "dailyProtein": "15.5",
+              "dailyFat": "",
+              "dailyCarbohydrate": "",
+              "dailyExercise": "",
+              "dailySleep": ""
+          }
+          """;
+      mockMvc.perform(MockMvcRequestBuilders.post("/breeding/3")
+              .contentType("application/json")
+              .content(requestBody))
+          .andExpect(MockMvcResultMatchers.status().isBadRequest())
+          .andExpect(MockMvcResultMatchers.content().json(
+              """
+                  {
+                      "status": "BAD_REQUEST",
+                      "message": "validation error",
+                      "errors": [
+                          {
+                              "message": "At least one field must be completed, and if nutrients are entered, calories are also required",
+                              "entity": "breedingCreateRequest"
+                          }
+                      ]
                   }
                   """
           ));
