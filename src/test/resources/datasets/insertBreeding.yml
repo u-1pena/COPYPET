@@ -1,0 +1,27 @@
+breeding:
+  - id: 1
+    daily_kcal: 1550
+    daily_protein: 35.0
+    daily_fat: 35.0
+    daily_carbohydrate: 55.0
+    daily_exercise: 0
+    daily_sleep: 8.0
+    breeding_date: "2022-01-01"
+
+  - id: 2
+    daily_kcal: 1550
+    daily_protein: 35.0
+    daily_fat: 35.0
+    daily_carbohydrate: 55.0
+    daily_exercise: 250
+    daily_sleep: 8.0
+    breeding_date: "2022-01-02"
+
+  - id: 3
+    daily_kcal: 220
+    daily_protein: 1.5
+    daily_fat: 0.0
+    daily_carbohydrate: 0.0
+    daily_exercise: 0
+    daily_sleep: 0.0
+    breeding_date: "2022-01-03"

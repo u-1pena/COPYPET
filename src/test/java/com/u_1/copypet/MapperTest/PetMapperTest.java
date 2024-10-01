@@ -48,7 +48,7 @@ public class PetMapperTest {
     @DataSet(value = "datasets/pets.yml")
     @Transactional
     void ユーザーIDで既にユーザーと紐づけされているペットを検索すること() {
-      Optional<Pet> pet = petMapper.findPetByUserId(1);
+      Optional<Pet> pet = petMapper.findPetById(1);
       assertThat(pet).contains(new Pet(1, "ganmo", 0, Gender.MALE, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
     }

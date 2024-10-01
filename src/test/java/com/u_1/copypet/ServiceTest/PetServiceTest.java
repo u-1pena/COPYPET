@@ -43,18 +43,18 @@ public class PetServiceTest {
     @Test
     void ペット登録されているユーザーを検索した場合例外処理をかえすこと() {
       doReturn(Optional.of(new Pet(1, "testPet", 0, Gender.MALE, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
-          .when(petMapper).findPetByUserId(1);
-      assertThatThrownBy(() -> petService.findPetByUserId(1))
+          .when(petMapper).findPetById(1);
+      assertThatThrownBy(() -> petService.checkUserHasNoPet(1))
           .isInstanceOf(PetAlreadyExistsException.class)
           .hasMessage("Pet already exists with user id: 1");
     }
 
     @Test
     void ペット登録されていないユーザーを検索すること() {
-      doReturn(Optional.empty()).when(petMapper).findPetByUserId(1);
-      Optional<Pet> actual = petService.findPetByUserId(1);
+      doReturn(Optional.empty()).when(petMapper).findPetById(1);
+      Optional<Pet> actual = petService.checkUserHasNoPet(1);
       assertThat(actual).isEmpty();
-      verify(petMapper).findPetByUserId(1);
+      verify(petMapper).findPetById(1);
     }
 
   }

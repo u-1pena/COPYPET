@@ -26,19 +26,17 @@ public class PetController {
     this.userService = userService;
   }
 
-  @PostMapping("/pets/{userId}")
+  @PostMapping("/pets/{id}")
   public ResponseEntity<ApplicationResponse> createPet(
-      @PathVariable int userId,
+      @PathVariable int id,
       @RequestBody @Validated PetCreateRequest petCreateRequest,
       UriComponentsBuilder uriBuilder) {
-
-    User user = userService.findById(userId);
-
-    petService.findPetByUserId(userId);
+    User user = userService.findById(id);
+    petService.checkUserHasNoPet(id);
     Pet pet = petCreateRequest.convertToEntity(user, petService);
     petService.createPet(pet);
 
-    URI location = uriBuilder.path("/pets/{id}").buildAndExpand(pet.getUserId()).toUri();
+    URI location = uriBuilder.path("/pets/{id}").buildAndExpand(pet.getId()).toUri();
     ApplicationResponse body = new ApplicationResponse(
         "The pet registration has been completed. The owner is " + user.getName());
     return ResponseEntity.created(location).body(body);
